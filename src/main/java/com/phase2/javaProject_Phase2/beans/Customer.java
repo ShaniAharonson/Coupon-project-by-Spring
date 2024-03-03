@@ -36,9 +36,9 @@ public class Customer {
     @Length(min = 4, max = 13)
     private String password;
 
-    @OneToMany (cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany (cascade = CascadeType.ALL)
     @Singular
-    private Set<Coupon> coupons;
+    private List<Coupon> coupons;
 
 
 }

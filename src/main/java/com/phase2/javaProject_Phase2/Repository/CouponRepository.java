@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CouponRepository extends JpaRepository<Coupon,Integer> {
-public List<Coupon> priceLowerThan(Double maxPrice);
+
 }
