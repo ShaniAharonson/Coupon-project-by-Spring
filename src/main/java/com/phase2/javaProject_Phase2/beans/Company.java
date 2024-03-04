@@ -28,7 +28,7 @@ public class Company {
     @Length(min = 5, max = 15)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @Singular
     private List<Coupon> coupons;
 

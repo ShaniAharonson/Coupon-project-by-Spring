@@ -12,7 +12,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-@Component
+//@Component
 @Order(1)
 public class CreateCompany implements CommandLineRunner {
     @Autowired

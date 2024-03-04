@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AdminService {
 
-    boolean adminLogin(String email, String password) throws AdminSystemException;
+   boolean adminLogin(String email, String password) throws AdminSystemException;
     void addCompany(Company company) throws AdminSystemException;
     void updateCompany (int companyId, Company company) throws AdminSystemException;
     void deleteCompany(int companyId) throws AdminSystemException;

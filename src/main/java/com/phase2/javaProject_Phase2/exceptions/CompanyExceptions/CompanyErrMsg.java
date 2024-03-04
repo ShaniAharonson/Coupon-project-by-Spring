@@ -4,10 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum CompanyErrMsg {
-    COMPANY_NOT_EXISTS("company not exists..."),
-    COUPON_TITLE_ALREADY_EXISTS("Coupon title already exists"),
-    CANNOT_UPDATE_COUPON("cannot update coupon"),
-    COUPON_NOT_FOUND("Coupon not found");
+    COMPANY_NOT_EXISTS("company not exists...");
+
 
     public String msg;
 

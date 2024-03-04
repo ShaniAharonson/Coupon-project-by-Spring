@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
-@Order(11)
+//@Component
+@Order(12)
 public class UpdateCoupon implements CommandLineRunner {
     @Autowired
     CouponRepository couponRepository;

@@ -13,7 +13,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-@Component
+//@Component
 @Order(6)
 public class CreateCustomer implements CommandLineRunner {
     @Autowired

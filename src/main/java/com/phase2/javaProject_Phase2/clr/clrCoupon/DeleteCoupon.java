@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 //@Component
-//@Order(12)
+//@Order(11)
 public class DeleteCoupon implements CommandLineRunner {
     @Autowired
     CouponRepository couponRepository;

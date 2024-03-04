@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+//@Component
 @Order(4)
 public class GetAllCompanies implements CommandLineRunner {
     @Autowired

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-@Component
+//@Component
 @Order(16)
 public class addCategory implements CommandLineRunner {
     @Autowired

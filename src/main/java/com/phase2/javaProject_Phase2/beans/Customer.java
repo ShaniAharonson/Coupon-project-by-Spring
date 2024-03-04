@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "CUSTOMERS")
+@Table(name = "customers")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,7 +36,7 @@ public class Customer {
     @Length(min = 4, max = 13)
     private String password;
 
-    @OneToMany (cascade = CascadeType.ALL)
+    @ManyToMany (cascade = CascadeType.ALL)
     @Singular
     private List<Coupon> coupons;
 

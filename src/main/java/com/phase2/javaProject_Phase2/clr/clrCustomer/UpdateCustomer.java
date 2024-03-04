@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
+//@Component
 @Order(7)
 public class UpdateCustomer implements CommandLineRunner {
     @Autowired

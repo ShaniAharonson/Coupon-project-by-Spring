@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
+//@Component
 @Order(8)
 public class DeleteCustomer implements CommandLineRunner {
     @Autowired
