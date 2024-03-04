@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "coupons")
@@ -48,6 +49,8 @@ public class Coupon {
     private Double price;
 
     private String image;
+
+
 
     public Coupon(Integer company_ID, Integer category_ID, String title, String description,
                   Date start_date, Date end_date, Integer amount, Double price, String image) {
