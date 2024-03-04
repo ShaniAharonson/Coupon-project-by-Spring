@@ -1,7 +1,9 @@
 package com.phase2.javaProject_Phase2.services;
 
 import com.phase2.javaProject_Phase2.Repository.CouponRepository;
+import com.phase2.javaProject_Phase2.beans.Category;
 import com.phase2.javaProject_Phase2.beans.Coupon;
+import com.phase2.javaProject_Phase2.beans.EnumCategory;
 import com.phase2.javaProject_Phase2.exceptions.CouponExceptions.CouponErrMsg;
 import com.phase2.javaProject_Phase2.exceptions.CouponExceptions.CouponSystemException;
 import lombok.RequiredArgsConstructor;
@@ -50,13 +52,13 @@ public class CouponServiceImp implements CouponService {
     }
 
     @Override
-    public List<Coupon> getAllCouponsByCategory(int category) throws CouponSystemException {
-        return null;
+    public List<Coupon> getAllCouponsByCategory(Category category) throws CouponSystemException {
+        return null; //couponRepository.findByCategory(category);
     }
 
     @Override
     public List<Coupon> getAllCouponsUpToMaxPrice(Double maxPrice) throws CouponSystemException {
-        return couponRepository.priceLowerThan(maxPrice);
+        return couponRepository.priceLessThan(maxPrice);
     }
 
     @Override
