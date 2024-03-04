@@ -56,7 +56,7 @@ public class CouponServiceImp implements CouponService {
 
     @Override
     public List<Coupon> getAllCouponsUpToMaxPrice(Double maxPrice) throws CouponSystemException {
-        return null;
+        return couponRepository.priceLowerThan(maxPrice);
     }
 
     @Override
