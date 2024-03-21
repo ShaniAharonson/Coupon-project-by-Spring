@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 //@Component
-@Order(3)
+//@Order(3)
 public class DeleteCompany implements CommandLineRunner {
     @Autowired
     CompanyRepository companyRepository;

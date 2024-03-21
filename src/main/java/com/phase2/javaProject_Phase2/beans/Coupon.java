@@ -25,8 +25,8 @@ public class Coupon {
     @Column(nullable = false)
     private Integer company_ID;
 
-    @Column(nullable = false)
-    private Integer category_ID;
+   @Enumerated(EnumType.ORDINAL)
+    private Category category_ID;
 
     @Column(nullable = false) // exception for sql
     @Length(min = 1, max = 400) // exception for advice
@@ -51,8 +51,7 @@ public class Coupon {
     private String image;
 
 
-
-    public Coupon(Integer company_ID, Integer category_ID, String title, String description,
+    public Coupon(Integer company_ID, Category category_ID, String title, String description,
                   Date start_date, Date end_date, Integer amount, Double price, String image) {
         this.company_ID = company_ID;
         this.category_ID = category_ID;

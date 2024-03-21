@@ -3,6 +3,8 @@ package com.phase2.javaProject_Phase2.clr.clrCompany;
 import com.phase2.javaProject_Phase2.Repository.CompanyRepository;
 import com.phase2.javaProject_Phase2.beans.Company;
 import com.phase2.javaProject_Phase2.beans.Coupon;
+import com.phase2.javaProject_Phase2.services.AdminService;
+import com.phase2.javaProject_Phase2.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -13,10 +15,12 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 //@Component
-@Order(1)
+//@Order(1)
 public class CreateCompany implements CommandLineRunner {
     @Autowired
     CompanyRepository companyRepository;
+    @Autowired
+    AdminService adminService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -40,7 +44,9 @@ public class CreateCompany implements CommandLineRunner {
                 .password("303030")
                 .build();
 
-        companyRepository.saveAll(Arrays.asList(company1, company2, company3));
+        adminService.addCompany(company1);
+        adminService.addCompany(company2);
+        adminService.addCompany(company3);
         System.out.println("Companies created!");
         System.out.println();
 

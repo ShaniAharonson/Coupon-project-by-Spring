@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "COMPANIES")
@@ -28,7 +29,7 @@ public class Company {
     @Length(min = 5, max = 15)
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company_ID",orphanRemoval = true)
     @Singular
     private List<Coupon> coupons;
 

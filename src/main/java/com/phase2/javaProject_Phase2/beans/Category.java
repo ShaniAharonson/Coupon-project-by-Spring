@@ -1,23 +1,19 @@
 package com.phase2.javaProject_Phase2.beans;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Entity
-@Table(name = "CATEGORIES")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@Getter
+public enum Category {
+    ELECTRICITY("electricity"),
+    FOOD("food"),
+    RESTAURANT("restaurant"),
+    VACATION("vacation");
 
-    @Enumerated(EnumType.ORDINAL)
-    private EnumCategory enumCategory;
+    private String name;
+
+    Category(String name) {
+        this.name = name;
+    }
+
 
 }

@@ -8,10 +8,9 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "customers")
+@Table(name = "CUSTOMERS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

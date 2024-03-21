@@ -12,7 +12,9 @@ public enum AdminErrMsg {
     CANNOT_CHANGE_COMPANY_PASSWORD("cannot change company password"),
     CANNOT_ADD_CUSTOMER_WITH_SAME_EMAIL("cannot add customer with the same email"),
     CANNOT_UPDATE_CUSTOMER("cannot update customer"),
-    ID_NOT_FOUND("ID not found");
+    ID_NOT_FOUND("ID not found"),
+    COMPANY_NAME_ERROR("cannot change company's name");
+
     private String msg;
     AdminErrMsg(String msg){this.msg=msg;}
 

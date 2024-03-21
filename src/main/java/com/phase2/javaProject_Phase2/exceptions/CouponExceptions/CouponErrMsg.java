@@ -4,11 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum CouponErrMsg {
-    COUPON_ALREADY_EXISTS("coupon already exists"),
-    COUPON_TITLE_ALREADY_EXISTS("Coupon title already exists"),
+
+
     CANNOT_UPDATE_COUPON("cannot update coupon"),
     COUPON_BY_CATEGORY_NOT_FOUND("coupon by this category is not found"),
-    COUPON_NOT_FOUND("Coupon not found");
+    COUPON_NOT_FOUND("Coupon not found"),
+    PURCHASE_ERROR("cannot purchase the same coupon"),
+    AMOUNT_ERROR("amount is lower than 0"),
+    COUPON_IS_EXPIRED("coupon is expired");
     public String msg;
     CouponErrMsg(String msg){this.msg=msg;}
 }

@@ -6,6 +6,8 @@ import com.phase2.javaProject_Phase2.beans.Company;
 import com.phase2.javaProject_Phase2.beans.Customer;
 import com.phase2.javaProject_Phase2.exceptions.AdminExceptions.AdminErrMsg;
 import com.phase2.javaProject_Phase2.exceptions.AdminExceptions.AdminSystemException;
+import com.phase2.javaProject_Phase2.exceptions.CompanyExceptions.CompanyErrMsg;
+import com.phase2.javaProject_Phase2.exceptions.CompanyExceptions.CompanySystemException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +21,17 @@ private final String adminEmail = "admin@admin.com";
 private final String  adminPass = "admin";
     @Override
     public boolean adminLogin(String email, String password) throws AdminSystemException {
-        if (!(email.equals(adminEmail)&&password.equals(adminPass))){
+        if (email.equals(adminEmail)&&password.equals(adminPass)){
+            return true;
+        }
+        else {
             throw new AdminSystemException(AdminErrMsg.ADMIN_NOT_EXISTS);
         }
-        return true;
     }
 
     @Override
     public void addCompany(Company company) throws AdminSystemException {
-        int id = company.getId();
-        if (companyRepository.existsById(id)){
-            throw new AdminSystemException(AdminErrMsg.COMPANY_ID_ALREADY_EXISTS);
-        }
+
         String companyName = company.getName();
         if (companyRepository.existsByName(companyName)){
             throw new AdminSystemException(AdminErrMsg.COMPANY_NAME_ALREADY_EXISTS);
@@ -43,9 +44,14 @@ private final String  adminPass = "admin";
     }
 
     @Override
-    public void updateCompany(int companyId, Company company) throws AdminSystemException {
+    public void updateCompany(Company company) throws AdminSystemException {
+        int companyId = company.getId();
         if (!companyRepository.existsById(companyId)){
             throw new AdminSystemException(AdminErrMsg.ID_NOT_FOUND);
+        }
+        String name = company.getName();
+        if (companyRepository.existsByName(name)){
+            throw new AdminSystemException(AdminErrMsg.COMPANY_NAME_ERROR);
         }
         companyRepository.saveAndFlush(company);
     }
