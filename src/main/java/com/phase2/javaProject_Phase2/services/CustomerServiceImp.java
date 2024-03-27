@@ -5,8 +5,6 @@ import com.phase2.javaProject_Phase2.Repository.CustomerRepository;
 import com.phase2.javaProject_Phase2.beans.Category;
 import com.phase2.javaProject_Phase2.beans.Coupon;
 import com.phase2.javaProject_Phase2.beans.Customer;
-import com.phase2.javaProject_Phase2.exceptions.CompanyExceptions.CompanyErrMsg;
-import com.phase2.javaProject_Phase2.exceptions.CompanyExceptions.CompanySystemException;
 import com.phase2.javaProject_Phase2.exceptions.CouponExceptions.CouponErrMsg;
 import com.phase2.javaProject_Phase2.exceptions.CouponExceptions.CouponSystemException;
 import com.phase2.javaProject_Phase2.exceptions.CustomerExceptions.CustomerErrMsg;
@@ -27,33 +25,41 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public Boolean customerLogin(String email, String password) throws CustomerSystemException {
-        Customer customer = customerRepository.findByEmailAndPassword(email, password);
+        try {
+            Customer customer = customerRepository.findByEmailAndPassword(email, password);
 
-        if (customer == null) {
-            throw new CustomerSystemException(CustomerErrMsg.CUSTOMER_LOGIN_ERROR);
+            if (customer == null) {
+                throw new CustomerSystemException(CustomerErrMsg.CUSTOMER_LOGIN_ERROR);
+            }
+            this.customerId = customer.getId();
+
+        } catch (Exception err) {
+            System.out.println(err.getMessage());
         }
-        this.customerId = customer.getId();
         return true;
-
     }
 
     @Override
     public void purchaseCoupon(Coupon coupon) throws CouponSystemException {
-        int id = coupon.getId();
-        int amount = coupon.getAmount();
-        Date endDate = coupon.getEnd_date();
+        try {
+            int id = coupon.getId();
+            int amount = coupon.getAmount();
+            Date endDate = coupon.getEnd_date();
 
-        if (couponRepository.existsById(id)) {
-            throw new CouponSystemException(CouponErrMsg.PURCHASE_ERROR);
+            if (couponRepository.existsById(id)) {
+                throw new CouponSystemException(CouponErrMsg.PURCHASE_ERROR);
+            }
+            if (coupon.getAmount() < 0) {
+                throw new CouponSystemException(CouponErrMsg.AMOUNT_ERROR);
+            }
+            if (coupon.getEnd_date().before(Date.valueOf(LocalDate.now()))) {
+                throw new CouponSystemException(CouponErrMsg.COUPON_IS_EXPIRED);
+            }
+            coupon.setAmount(amount - 1);
+            couponRepository.save(coupon);
+        }catch (Exception err){
+            System.out.println(err.getMessage());
         }
-        if (coupon.getAmount() < 0) {
-            throw new CouponSystemException(CouponErrMsg.AMOUNT_ERROR);
-        }
-        if (coupon.getEnd_date().before(Date.valueOf(LocalDate.now()))) {
-            throw new CouponSystemException(CouponErrMsg.COUPON_IS_EXPIRED);
-        }
-        coupon.setAmount(amount - 1);
-        couponRepository.save(coupon);
     }
 
     @Override
