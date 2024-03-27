@@ -9,14 +9,13 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "coupons")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +24,7 @@ public class Coupon {
     @Column(nullable = false)
     private Integer company_ID;
 
-   @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Category category_ID;
 
     @Column(nullable = false) // exception for sql

@@ -7,15 +7,12 @@ import com.phase2.javaProject_Phase2.exceptions.CouponExceptions.CouponSystemExc
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class GuestServiceImp implements GuestService {
     final CouponRepository couponRepository;
-
-
-
-
-
 
     @Override
     public Coupon getSingleCoupon(Integer couponId) throws CouponSystemException {
@@ -26,8 +23,10 @@ public class GuestServiceImp implements GuestService {
         return coupon;
     }
 
-
-
+    @Override
+    public List<Coupon> getAllCoupons(){
+        return couponRepository.findAll();
+    }
 
 
 }

@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerServiceImp implements CustomerService{
+public class CustomerServiceImp implements CustomerService {
     private int customerId;
     public final CustomerRepository customerRepository;
     public final CouponRepository couponRepository;
@@ -29,13 +29,14 @@ public class CustomerServiceImp implements CustomerService{
     public Boolean customerLogin(String email, String password) throws CustomerSystemException {
         Customer customer = customerRepository.findByEmailAndPassword(email, password);
 
-        if (customer==null) {
+        if (customer == null) {
             throw new CustomerSystemException(CustomerErrMsg.CUSTOMER_LOGIN_ERROR);
         }
-        this.customerId=customer.getId();
+        this.customerId = customer.getId();
         return true;
 
     }
+
     @Override
     public void purchaseCoupon(Coupon coupon) throws CouponSystemException {
         int id = coupon.getId();
@@ -45,13 +46,13 @@ public class CustomerServiceImp implements CustomerService{
         if (couponRepository.existsById(id)) {
             throw new CouponSystemException(CouponErrMsg.PURCHASE_ERROR);
         }
-        if (couponRepository.findByAmount(amount) < 0) {
+        if (coupon.getAmount() < 0) {
             throw new CouponSystemException(CouponErrMsg.AMOUNT_ERROR);
         }
-        if (couponRepository.findAllByEnd_Date(endDate).after(Date.valueOf(LocalDate.now()))) {
+        if (coupon.getEnd_date().before(Date.valueOf(LocalDate.now()))) {
             throw new CouponSystemException(CouponErrMsg.COUPON_IS_EXPIRED);
         }
-        coupon.setAmount(amount-1);
+        coupon.setAmount(amount - 1);
         couponRepository.save(coupon);
     }
 
@@ -63,19 +64,23 @@ public class CustomerServiceImp implements CustomerService{
 
     @Override
     public List<Coupon> getAllCustomerCouponsByCategory(Category category) throws CustomerSystemException {
-        return couponRepository.findByIdAndCategory_ID(this.customerId, category);
+        //return couponRepository.findByIdAndCategory_ID(this.customerId, category);
+        return null;
     }
 
     @Override
     public List<Coupon> getAllCustomerCouponsUpToMaxPrice(Double maxPrice) throws CustomerSystemException {
-        if (maxPrice<0){
+        int id = customerId;
+        if (maxPrice < 0) {
             throw new CustomerSystemException(CustomerErrMsg.MAX_PRICE_ERROR);
         }
-        return couponRepository.priceLessThan(maxPrice);
+        return couponRepository.findByPriceLessThanAndId(maxPrice,customerId);
+
     }
 
     @Override
     public Customer getCustomerDetails() throws CustomerSystemException {
-        return null;
+        return customerRepository.findById(this.customerId)
+                .orElseThrow(() -> new CustomerSystemException(CustomerErrMsg.CUSTOMER_NOT_EXISTS));
     }
 }

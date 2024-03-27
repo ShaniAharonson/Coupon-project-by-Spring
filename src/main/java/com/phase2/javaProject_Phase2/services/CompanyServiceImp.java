@@ -7,11 +7,11 @@ import com.phase2.javaProject_Phase2.beans.Company;
 import com.phase2.javaProject_Phase2.beans.Coupon;
 import com.phase2.javaProject_Phase2.exceptions.CompanyExceptions.CompanyErrMsg;
 import com.phase2.javaProject_Phase2.exceptions.CompanyExceptions.CompanySystemException;
-import com.phase2.javaProject_Phase2.exceptions.CouponExceptions.CouponSystemException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -60,15 +60,21 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public void deleteCoupon(int couponId) throws CompanySystemException {
+        //get client
+        //remove coupon from client coupon list
+        //save the client
+        //delete the coupon
         if (!couponRepository.existsById(couponId)) {
             throw new CompanySystemException(CompanyErrMsg.COUPON_NOT_FOUND);
         }
-//        Optional<Coupon> couponToDelete = couponRepository.findById(couponId);
+        Coupon couponToDelete = couponRepository.findById(couponId).get();
+        companyRepository.findById(this.companyId).get().getCoupons().remove(couponToDelete);
 //        couponToDelete.ifPresent(coupon -> {
+//            //todo: problem!!!!!!!!!!
 //            getAllCompanyCoupons().remove(coupon);
-        couponRepository.deleteById(couponId);
+//            couponRepository.deleteById(couponId);
+//        });
     }
-
     @Override
     public List<Coupon> getAllCompanyCoupons() throws CompanySystemException {
         return companyRepository.findById(this.companyId).orElseThrow(
@@ -77,15 +83,19 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public List<Coupon> getAllCompanyCouponsByCategory(Category category) {
-        return couponRepository.findByIdAndCategory_ID(this.companyId, category);
+        return couponRepository.findByIdAndCategoryId(this.companyId, category);
+
     }
     @Override
-    public List<Coupon> getAllCompanyCouponsUpToMaxPrice(Double maxPrice) throws CompanySystemException {
+    public List<Coupon> getAllCompanyCouponsUpToMaxPrice(Double maxPrice, int companyId) throws CompanySystemException {
+        int id = companyId;
         if (maxPrice<0){
             throw new CompanySystemException(CompanyErrMsg.MAX_PRICE_ERROR);
         }
-        return couponRepository.priceLessThan(maxPrice);
+        companyRepository.findById(companyId);
+        return couponRepository.findByPriceLessThanAndId(maxPrice,companyId);
     }
+
 
     @Override
     public Company getCompanyDetails() throws CompanySystemException {

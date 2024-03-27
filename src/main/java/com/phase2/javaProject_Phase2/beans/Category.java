@@ -1,8 +1,11 @@
 package com.phase2.javaProject_Phase2.beans;
 
+import ch.qos.logback.core.joran.spi.NoAutoStart;
 import lombok.Getter;
+import org.hibernate.validator.constraints.Range;
 
 @Getter
+
 public enum Category {
     ELECTRICITY("electricity"),
     FOOD("food"),
@@ -10,8 +13,7 @@ public enum Category {
     VACATION("vacation");
 
     private String name;
-
-    Category(String name) {
+     Category(String name) {
         this.name = name;
     }
 

@@ -90,7 +90,8 @@ private final String  adminPass = "admin";
     }
 
     @Override
-    public void updateCustomer(int customerId, Customer customer) throws AdminSystemException {
+    public void updateCustomer(Customer customer) throws AdminSystemException {
+        int customerId = customer.getId();
         if (!customerRepository.existsById(customerId)){
             throw new AdminSystemException(AdminErrMsg.ID_NOT_FOUND);
         }

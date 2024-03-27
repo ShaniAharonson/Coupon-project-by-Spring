@@ -15,6 +15,6 @@ public interface CompanyService {
     void deleteCoupon(int couponId) throws CompanySystemException;
     List<Coupon> getAllCompanyCoupons() throws CompanySystemException;
     List<Coupon> getAllCompanyCouponsByCategory(Category category) throws CouponSystemException;
-    List<Coupon> getAllCompanyCouponsUpToMaxPrice(Double maxPrice) throws CompanySystemException;
+    List<Coupon> getAllCompanyCouponsUpToMaxPrice(Double maxPrice, int id) throws CompanySystemException;
    Company getCompanyDetails() throws CompanySystemException;
 }

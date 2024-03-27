@@ -3,6 +3,7 @@ package com.phase2.javaProject_Phase2.clr;
 import com.phase2.javaProject_Phase2.beans.Category;
 import com.phase2.javaProject_Phase2.beans.Company;
 import com.phase2.javaProject_Phase2.beans.Coupon;
+import com.phase2.javaProject_Phase2.beans.Customer;
 import com.phase2.javaProject_Phase2.services.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Date;
 import java.time.LocalDate;
 
-@Component
+//@Component
 @Order(1)
 @RequiredArgsConstructor
 public class AdminTest implements CommandLineRunner {
@@ -20,8 +21,13 @@ public class AdminTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("------------- COMPANIES -------------");
-        System.out.println(adminService.adminLogin("admin@admin.com", "admin"));
+        System.out.println("------------- ADMIN TESTING -------------");
+        try {
+            adminService.adminLogin("admin@admin.com", "admin");
+        } catch (Exception err){
+            System.out.println(err.getMessage());
+        }
+
 
         // add company
         Company company1 = Company.builder()
@@ -73,14 +79,104 @@ public class AdminTest implements CommandLineRunner {
         System.out.println();
 
         // update company
-//        adminService.updateCompany(Company.builder()
+        adminService.updateCompany(Company.builder()
+                .id(4)
+                .name("Google")
+                .email("google@google.com")
+                .password("767676")
+                .build());
+
+        System.out.println("company updated!");
+
+        // delete company
+//        adminService.deleteCompany(4);
+        System.out.println("company deleted");
+
+        //get all companies
+        System.out.println("All companies:");
+//        adminService.getAllCompanies().forEach(System.out::println);
+
+        // get single company
+        System.out.println("single company:");
+//        System.out.println(adminService.getSingleCompany(1));
+
+        // add customer
+        Customer customer1 = Customer.builder()
+                .id(0)
+                .First_Name("ofir")
+                .Last_Name("Aharonson")
+                .email("ofir@ofir.com")
+                .coupon(new Coupon(1, Category.FOOD, "Pasta", "pasta with tomato sauce",
+                        Date.valueOf(LocalDate.of(2023, 3, 8)),
+                        Date.valueOf(LocalDate.of(2027, 8, 2)), 350, 55.9,
+                        "image5"))
+                .password("11223344")
+                .build();
+//        adminService.addCustomer(customer1);
+
+        Customer customer2 = Customer.builder()
+                .id(0)
+                .First_Name("shani")
+                .Last_Name("Aharonson")
+                .email("shani@shani.com")
+                .coupon(new Coupon(2, Category.ELECTRICITY, "XBOX", "Having fun with xbox",
+                        Date.valueOf(LocalDate.of(2022, 1, 3)),
+                        Date.valueOf(LocalDate.of(2026, 10, 6)), 12, 2000.0,
+                        "image6"))
+                .password("99887766")
+                .build();
+
+//        adminService.addCustomer(customer2);
+
+        Customer customer3 = Customer.builder()
+                .id(0)
+                .First_Name("yael")
+                .Last_Name("Friedman")
+                .email("Yael@Yael.com")
+                .coupon(new Coupon(3, Category.RESTAURANT, "BBB", "Family hamburger deal",
+                        Date.valueOf(LocalDate.of(2023, 6, 15)),
+                        Date.valueOf(LocalDate.of(2025, 11, 8)), 30, 200.0,
+                        "image7"))
+                .password("667788")
+                .build();
+
+        //       adminService.addCustomer(customer3);
+
+        Customer customer4 = Customer.builder()
+                .id(0)
+                .First_Name("Oshra")
+                .Last_Name("bolandi")
+                .email("oshra@oshra.com")
+                .coupon(new Coupon(1, Category.VACATION, "London", "vacation for one week in london city",
+                        Date.valueOf(LocalDate.of(2023, 7, 1)),
+                        Date.valueOf(LocalDate.of(2025, 7, 30)), 200, 25.5,
+                        "image"))
+                .password("449977")
+                .build();
+        //       adminService.addCustomer(customer4);
+        System.out.println("new customers added");
+
+        //update customer
+//        adminService.updateCustomer(Customer.builder()
 //                .id(4)
-//                .name("Google")
-//                .email("google@google.com")
-//                .password("767676")
+//                .First_Name("OSHRA")
+//                .Last_Name("BOLANDI")
+//                .email("oshra@oshra.com")
+//                .password("449977")
 //                .build());
-//
-//        System.out.println("company updated!");
+
+        System.out.println("customer is updated!");
+
+//        adminService.deleteCustomer(4);
+        System.out.println("customer is deleted");
+
+        //get all customers
+        System.out.println("All customers:");
+//        System.out.println(adminService.getAllCustomers());
+
+        // get single customer:
+        System.out.println("single customer:");
+        System.out.println(adminService.getSingleCustomer(2));
     }
 
 

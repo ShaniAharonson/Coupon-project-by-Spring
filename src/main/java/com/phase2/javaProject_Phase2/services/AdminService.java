@@ -15,7 +15,7 @@ public interface AdminService {
     List<Company> getAllCompanies();
     Company getSingleCompany(int CompanyId) throws AdminSystemException;
     void addCustomer(Customer customer) throws AdminSystemException;
-    void updateCustomer(int customerId,Customer customer) throws AdminSystemException;
+    void updateCustomer(Customer customer) throws AdminSystemException;
     void deleteCustomer(int customerId) throws AdminSystemException;
     List<Customer> getAllCustomers();
     Customer getSingleCustomer(int customerId) throws AdminSystemException;
