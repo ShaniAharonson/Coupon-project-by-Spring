@@ -80,14 +80,17 @@ public class CompanyTest implements CommandLineRunner {
         }
 
         // get all company's coupons
-        System.out.println("All company's coupon:");
-        companyService.getAllCompanyCoupons().forEach(System.out::println);
-
+        try {
+            System.out.println("All company's coupon:");
+            companyService.getAllCompanyCoupons().forEach(System.out::println);
+        } catch (Exception err){
+            System.out.println(err.getMessage());
+        }
         // get all company's coupons by category
         try {
             //todo: why is not working?!
             System.out.println("Company's coupons by category:");
-            System.out.println(companyService.getAllCompanyCouponsByCategory(Category.RESTAURANTע));
+            System.out.println(companyService.getAllCompanyCouponsByCategory(Category.RESTAURANT));
         } catch (Exception err) {
             System.out.println(err.getMessage());
         }
@@ -102,8 +105,11 @@ public class CompanyTest implements CommandLineRunner {
         }
 
         // company details:
-        System.out.println("company details");
+        try {
+            System.out.println("company details");
 //        System.out.println(companyService.getCompanyDetails());
-
+        } catch (Exception err){
+            System.out.println(err.getMessage());
+        }
     }
 }
