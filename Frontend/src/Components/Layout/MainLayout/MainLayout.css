@@ -1,0 +1,26 @@
+.MainLayout {
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 15% 80% 5%;
+    grid-template-columns: repeat(6, 1fr);
+    background-color: #fdf5e6; /* צבע רקע חמים */
+    color: #333; /* צבע טקסט כהה */
+    border: 1px solid #cd853f; /* גבול */
+}
+
+.MainLayout>header, .MainLayout>footer {
+    grid-column: span 6;
+    background-color: #f5deb3; /* צבע רקע חמים לכותרת ולכף רגל */
+    color: #333; /* צבע טקסט כהה */
+    border: none; /* אין גבול */
+}
+
+.MainLayout>main {
+    grid-column: span 5;
+    padding: 20px; /* ריפוד פנימי לקריאת המסך */
+    background-color: #fff; /* רקע לתוכן הראשי */
+    border: 1px solid #cd853f; /* גבול */
+    border-radius: 10px; /* פינות מעוגלות */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* צל מעודן */
+}

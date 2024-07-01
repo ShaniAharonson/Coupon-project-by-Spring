@@ -1,0 +1,31 @@
+.Header {
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+    padding: 10px;
+}
+
+.login {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.logo {
+    margin-right: 100%;
+}
+
+.HeadLine {
+    font-size: 36px; /* גודל גופן גדול יותר */
+    font-weight: bold;
+    font-family: 'Arial Black', sans-serif; /* גופן מודגש ומרשים */
+    color: #ff4500; /* צבע כתום אדום */
+    text-align: center;
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* צל מורכב יותר */
+}
+.logo img {
+    width: 150px; /* גודל התמונה של הלוגו */
+    height: auto;
+    object-fit: contain; /* תמונה בלבד */
+    margin-right: 50px; /* מרווח משמאל */
+    margin-top: -20px; /* כיוון שמאל למעלה */
+}

@@ -1,0 +1,28 @@
+.Menu {
+    display: flex;
+    flex-direction: column; /* תפריט אנכי */
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* אין ריפוד */
+    background-color: #fdf5e6; /* רקע בצבע חמים */
+    color: #333; /* צבע טקסט כהה */
+  }
+  
+  .Menu a {
+    text-decoration: none;
+    color: #333; /* צבע טקסט כהה */
+    padding: 8px 16px; /* מרווח פנימי */
+    margin: 2px 0; /* מרווח בין כפתורים */
+    background-color: #f0e68c; /* צבע רקע חם */
+    border: 2px solid #d4af37; /* מסגרת */
+    border-radius: 10px; /* פינות מעוגלות */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* אנימציה של המעבר */
+    text-align: center; /* מיריב תוכן */
+  }
+  
+  .Menu a:hover {
+    background-color: #d4af37; /* צבע רקע לצהוב כהה */
+    color: #fff; /* צבע טקסט לבן */
+    border-color: #fff; /* צבע מסגרת ללבן */
+  }
+  
